@@ -68,9 +68,8 @@
 				<div class="tab-pane active" id="admin_pages">
 					<?php
 					$result = $db -> loadFromBase('page');
-					if(count($result) > 0)
-					{
-					echo '
+					if (count($result) > 0) {
+						echo '
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -83,8 +82,8 @@
 								</tr>
 							</thead>
 							<tbody>';
-					foreach ($result as $value) {
-						echo '
+						foreach ($result as $value) {
+							echo '
 								<tr>
 									<td>' . $value -> _id . '</td>
 									<td>' . $value -> _name . '</td>
@@ -96,58 +95,68 @@
 										<a href="#" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i> Delete</a>
 									</td>
 								</tr>';
-					}
-					echo '
+						}
+						echo '
 							</tbody>
 						</table>';
-					} else echo '<div class="alert alert-info">No element found in the database for pages.</div>';
+					} else
+						echo '<div class="alert alert-info">No element found in the database for pages.</div>';
 					?>
-					<div class="well">
-						<h4>Add a page</h4>
-						<hr />
-						<form id="add-page">
-						  <div class="input-prepend">
-						  	<span class="add-on prepend-mini">Title</span><input type="text" class="span3" placeholder="Enter page title…"> <span class="label label-important">* required</span>
-						  </div>
-						  <span class="help-block">Example block-level help text here.</span>
-						  <div class="input-prepend">
-						  	<span class="add-on prepend-mini">Content</span><input type="text" class="span3" placeholder="Enter page content…"> <span class="label label-important">* required</span>
-						  </div>
-						  <span class="help-block">Example block-level help text here.</span>
-						  <div class="input-prepend">
-						  	<span class="add-on prepend-mini">Icon</span><select id="icon_select" name="icon_select" class="span3">
-						  		<?php
-								$dirPath = dir('img/');
-								$imgArray = array();
-								while (($file = $dirPath -> read()) !== false) {
-									if ((substr($file, -3) == "gif") || (substr($file, -3) == "jpg") || (substr($file, -3) == "png")) {
-										$imgArray[] = trim($file);
-									}
-								}
-								$dirPath -> close();
-								sort($imgArray);
-								$c = count($imgArray);
-								for ($i = 0; $i < $c; $i++) {
-									echo "<option value=\"" . $imgArray[$i] . "\">" . $imgArray[$i] . "\n";
-								}
-							?>
-						  </select> <span class="label label-important">* required</span> <img id="help-icon" src="img/bug.png" class="help-inline"/>
-						  </div>
-						  <span class="help-block">Example block-level help text here.</span>
-						  <div class="input-prepend">
-						  	<span class="add-on prepend-mini">Link</span><input type="text" class="span3" placeholder="Enter page link…"> <span class="label label-important">* required</span>
-						  </div>
-						  <span class="help-block">Example block-level help text here.</span>
-						  <button type="submit" class="btn">Submit</button>
-						</form>
+					<div class="well row" style="margin: 0 auto !important;">
+						<a id="collapse_add_page" class="close" href="#">&minus;</a>
+						<div id="collapsable_add_page">
+							<div class="span5">
+								<h4>Add a page</h4>
+								<hr />
+								<form id="admin_add_page" method="post" action="test.php">
+								  <div class="input-prepend">
+								  	<span class="add-on prepend-mini">Title</span><input type="text" class="span3" name="page_title" placeholder="Enter page title…"> <span class="label label-important">* required</span>
+								  </div>
+								  <span class="help-block">Example block-level help text here.</span>
+								  <div class="input-prepend">
+								  	<span class="add-on prepend-mini">Content</span><textarea type="text" class="span3" name="page_content" placeholder="Enter page content…" rows="3" style="resize: vertical;"></textarea> <span class="label label-important">* required</span>
+								  </div>
+								  <span class="help-block">Example block-level help text here.</span>
+								  <div class="input-prepend">
+								  	<span class="add-on prepend-mini">Icon</span><select id="icon_select" name="icon_select" class="span3">
+								  		<?php
+										$dirPath = dir('img/');
+										$imgArray = array();
+										while (($file = $dirPath -> read()) !== false) {
+											if ((substr($file, -3) == "gif") || (substr($file, -3) == "jpg") || (substr($file, -3) == "png")) {
+												$imgArray[] = trim($file);
+											}
+										}
+										$dirPath -> close();
+										sort($imgArray);
+										$c = count($imgArray);
+										for ($i = 0; $i < $c; $i++) {
+											echo "<option value=\"" . $imgArray[$i] . "\">" . $imgArray[$i] . "\n";
+										}
+									?>
+								  </select>
+								  </div>
+								  <span class="help-block">Example block-level help text here.</span>
+								  <div class="input-prepend">
+								  	<span class="add-on prepend-mini">Link</span><input type="text" class="span3" name="page_link" placeholder="Enter page link…"> <span class="label label-important">* required</span>
+								  </div>
+								  <span class="help-block">Example block-level help text here.</span>
+								  <button type="submit" name="admin_add_page" class="btn">Submit</button>
+								</form>
+							</div>
+							<div class="span5">
+								<h4>Selected icon preview</h4>
+								<hr />
+								<img id="preview-icon-mini" src="img/bug.png"/> &nbsp; <img id="preview-icon-maxi" src="img/bigIcon/bug.png"/>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="admin_actions">
 					<?php
 					$result = $db -> loadFromBase('action');
-					if(count($result) > 0)
-					{
-					echo '
+					if (count($result) > 0) {
+						echo '
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -158,8 +167,8 @@
 								</tr>
 							</thead>
 							<tbody>';
-					foreach ($result as $value) {
-						echo '
+						foreach ($result as $value) {
+							echo '
 								<tr>
 									<td>' . $value -> _id . '</td>
 									<td>' . $value -> _name . '</td>
@@ -169,11 +178,12 @@
 										<a href="#" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i> Delete</a>
 									</td>
 								</tr>';
-					}
-					echo '
+						}
+						echo '
 							</tbody>
 						</table>';
-					} else echo '<div class="alert alert-info">No element found in the database for actions.</div>';
+					} else
+						echo '<div class="alert alert-info">No element found in the database for actions.</div>';
 					?>
 				</div>
 			</div>
