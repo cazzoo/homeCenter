@@ -108,7 +108,7 @@
 							<div class="span5">
 								<h4>Add a page</h4>
 								<hr />
-								<form id="admin_add_page" method="post" action="test.php">
+								<form id="admin_add_page" name="admin_add_page" method="post" action="test.php">
 								  <div class="input-prepend">
 								  	<span class="add-on prepend-mini">Title</span><input type="text" class="span3" name="page_title" placeholder="Enter page title…"> <span class="label label-important">* required</span>
 								  </div>
@@ -120,7 +120,7 @@
 								  <div class="input-prepend">
 								  	<span class="add-on prepend-mini">Icon</span><select id="icon_select" name="icon_select" class="span3">
 								  		<?php
-										$dirPath = dir('img/');
+										$dirPath = dir('img/icon/');
 										$imgArray = array();
 										while (($file = $dirPath -> read()) !== false) {
 											if ((substr($file, -3) == "gif") || (substr($file, -3) == "jpg") || (substr($file, -3) == "png")) {
@@ -141,13 +141,26 @@
 								  	<span class="add-on prepend-mini">Link</span><input type="text" class="span3" name="page_link" placeholder="Enter page link…"> <span class="label label-important">* required</span>
 								  </div>
 								  <span class="help-block">Example block-level help text here.</span>
-								  <button type="submit" name="admin_add_page" class="btn">Submit</button>
+								  <button type="submit" class="btn">Submit</button>
 								</form>
 							</div>
 							<div class="span5">
-								<h4>Selected icon preview</h4>
-								<hr />
-								<img id="preview-icon-mini" src="img/bug.png"/> &nbsp; <img id="preview-icon-maxi" src="img/bigIcon/bug.png"/>
+								<ul class="nav nav-tabs">
+									<li class="active">
+										<a href="#icon_preview" data-toggle="tab">Icon preview</a>
+									</li>
+									<li>
+										<a href="#page_preview" data-toggle="tab">Page preview</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active" id="icon_preview">
+										<img id="preview-icon-mini" src=""/> &nbsp; <img id="preview-icon-maxi" src=""/>
+									</div>
+									<div class="tab-pane" id="page_preview">
+										Coming later
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
