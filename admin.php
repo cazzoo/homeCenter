@@ -108,7 +108,7 @@
 							<div class="span5">
 								<h4>Add a page</h4>
 								<hr />
-								<form id="admin_add_page" name="admin_add_page" method="post" action="test.php">
+								<form id="form_add_page" name="form_add_page" method="post" action="test.php">
 								  <div class="input-prepend">
 								  	<span class="add-on prepend-mini">Title</span><input type="text" class="span3" name="page_title" placeholder="Enter page title…"> <span class="label label-important">* required</span>
 								  </div>
@@ -158,7 +158,7 @@
 										<img id="preview-icon-mini" src=""/> &nbsp; <img id="preview-icon-maxi" src=""/>
 									</div>
 									<div class="tab-pane" id="page_preview">
-										Coming later
+                                        <span class="loading">&nbsp;</span>
 									</div>
 								</div>
 							</div>

@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_REQUEST['admin_add_page']))
+if (isset($_REQUEST['formName']))
 	echo "form submitted!";
 var_dump($_REQUEST);
 
