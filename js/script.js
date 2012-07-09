@@ -34,17 +34,7 @@ $(function($) {
 
 $(function($) {
 	$("#form_add_page").submit(function() {
-		//Get the data from all the fields
-		var title = $('input[name=page_title]');
-		var content = $('textarea[name=page_content]');
-		var icon = $('select[name=icon_select]');
-		var link = $('input[name=page_link]');
-		var formName = $(this).attr('name');
 
-		//organize the data properly
-		var data = 'title=' + title.val() + '&content=' + encodeURIComponent(content.val()) + '&icon=' + icon.val() + '&link=' + link.val() + '&formName=' + formName.val();
-
-		//show the loading sign
 		$('#collapsable_add_page').animate({
 			opacity : 0.25,
 			left : '+=50',
@@ -53,20 +43,19 @@ $(function($) {
 			$('#collapsable_add_page').html('<span class="loading">&nbsp;</span>').fadeIn("slow");
 		});
 
-		var request = $.ajax({
-			url : "test.php",
-			type : "POST",
-			data : data,
-			dataType : "html"
-		});
-
-		request.done(function(msg) {
-			$("#collapsable_add_page").html(msg);
-		});
-
-		request.fail(function(jqXHR, textStatus) {
-			alert("Request failed: " + textStatus);
-		});
+		function sendForm() {
+			$.ajax({
+				url : "test.php",
+				type : "POST",
+				data : $(this).serialize(),
+				dataType : "html",
+				timeout: 1500
+			}).done(function(msg) {
+				$("#collapsable_add_page").html(msg);
+			}).fail(function(jqXHR, textStatus) {
+				alert("Request failed: " + textStatus);
+			});
+		};
 
 		//cancel the submit button default behaviours
 		return false;
