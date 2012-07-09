@@ -42,15 +42,15 @@ class Database {
 		}
 
 		$this -> disconnect();
-		
+
 		if (DEBUG_LEVEL > 1)
-				echo "Insertion into database!<br />";
+			echo "Insertion into database!<br />";
 	}
 
 	/**
 	 * Load the data from the SQLite database.
 	 * @param: $type : the type of the object we want the max ID.
-	 * 			Possible types : action | page | menuElement
+	 * 			Possible types : action | page
 	 */
 	public function loadFromBase($type) {
 
@@ -101,7 +101,7 @@ class Database {
 	/**
 	 * Return the last used ID + 1.
 	 * @param: $type : the type of the object we want the max ID.
-	 * 			Possible types : action | page | menuElement
+	 * 			Possible types : action | page
 	 */
 	public function getNextAvailableID($type) {
 
@@ -111,14 +111,17 @@ class Database {
 		$result = null;
 		switch($type) {
 			case "action" :
-				$result = $this -> _db -> query('SELECT MAX(id) from actions');
+				$result = $this -> _db -> querySingle('SELECT MAX(id) from actions');
 				break;
 			case "page" :
-				$result = $this -> _db -> query('SELECT MAX(id) from pages');
+				$result = $this -> _db -> querySingle('SELECT MAX(id) from pages');
 				break;
 		}
 
 		$this -> disconnect();
+
+		if ($result == null)
+			$result = 0;
 
 		if (DEBUG_LEVEL > 1) {
 			echo 'Last id for ' . $type . ' is ' . ($result + 1) . ' <br />';

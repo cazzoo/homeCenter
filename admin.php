@@ -28,12 +28,9 @@
 	<body>
 
 		<?php
-		require_once "constants.php";
-		require_once ("classes/Database.php");
-		require_once ("classes/Page.php");
-		require_once ("classes/Action.php");
+		require("loader.php");
 
-		$action = new Action(1, "myAction", "This is a first action that should create a file");
+		$action = new Action("myAction", "This is a first action that should create a file");
 
 		$action -> activate();
 		$action -> deactivate();
@@ -118,7 +115,7 @@
 								  </div>
 								  <span class="help-block">Example block-level help text here.</span>
 								  <div class="input-prepend">
-								  	<span class="add-on prepend-mini">Icon</span><select id="icon_select" name="icon_select" class="span3">
+								  	<span class="add-on prepend-mini">Icon</span><select id="page_icon" name="page_icon" class="span3">
 								  		<?php
 										$dirPath = dir('img/icon/');
 										$imgArray = array();
@@ -228,7 +225,7 @@
 		<script src="js/libs/bootstrap/bootstrap.min.js"></script>
 
 		<script src="js/plugins.js"></script>
-		<script src="js/script.js"></script>
+		
 		<!-- end scripts-->
 
 	</body>

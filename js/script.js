@@ -35,6 +35,18 @@ $(function($) {
 $(function($) {
 	$("#form_add_page").submit(function() {
 
+		$.ajax({
+			url : "test.php",
+			type : "POST",
+			data : $(this).serialize(),
+			dataType : "html"
+		});
+
+		//cancel the submit button default behaviours
+		return false;
+	});
+
+	$("#form_add_page").ajaxStart(function() {
 		$('#collapsable_add_page').animate({
 			opacity : 0.25,
 			left : '+=50',
@@ -42,22 +54,14 @@ $(function($) {
 		}, 800, function() {
 			$('#collapsable_add_page').html('<span class="loading">&nbsp;</span>').fadeIn("slow");
 		});
+	});
 
-		function sendForm() {
-			$.ajax({
-				url : "test.php",
-				type : "POST",
-				data : $(this).serialize(),
-				dataType : "html",
-				timeout: 1500
-			}).done(function(msg) {
-				$("#collapsable_add_page").html(msg);
-			}).fail(function(jqXHR, textStatus) {
-				alert("Request failed: " + textStatus);
-			});
-		};
+	$("#form_add_page").ajaxComplete(function(msg) {
+		$("#collapsable_add_page").html(msg);
+	});
 
-		//cancel the submit button default behaviours
-		return false;
-	})
+	$("#form_add_page").ajaxError(function(jqXHR, textStatus) {
+		alert("Request failed: " + textStatus);
+	});
+
 });

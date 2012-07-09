@@ -1,5 +1,6 @@
 <?php
-class Action {
+require_once("SavableObject.php");
+class Action extends SavableObject {
 
 	// Declarations
 	public $_id = 0;
@@ -8,9 +9,9 @@ class Action {
 	public $_state = 0;
 
 	// Methods
-	function __construct($id, $name, $description) {
-		if (is_int($id) && is_string($name) && is_string($description)) {
-			$this -> _id = $id;
+	function __construct($name, $description) {
+		if (is_string($name) && is_string($description)) {
+			$this -> _id = $this -> getLastAvailableId();
 			$this -> _name = $name;
 			$this -> _description = $description;
 			$this -> updateState();

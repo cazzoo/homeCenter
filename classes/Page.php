@@ -1,5 +1,6 @@
 <?php
-class Page {
+require_once ("SavableObject.php");
+class Page extends SavableObject {
 
 	// Declarations
 	public $_id = 0;
@@ -10,9 +11,9 @@ class Page {
 	private $_actions = array();
 
 	// Methods
-	function __construct($id, $title, $content, $icon, $link) {
-		if (is_int($id) && is_string($title) && is_string($content) && is_string($icon) && is_string($link)) {
-			$this -> _id = $id;
+	function __construct($title, $content, $icon, $link) {
+		if (is_string($title) && is_string($content) && is_string($icon) && is_string($link)) {
+			$this -> _id = $this -> getLastAvailableId();
 			$this -> _title = $title;
 			$this -> _content = $content;
 			$this -> $_icon = $icon;
