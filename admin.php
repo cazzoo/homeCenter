@@ -225,7 +225,7 @@
 		<script src="js/libs/bootstrap/bootstrap.min.js"></script>
 
 		<script src="js/plugins.js"></script>
-		
+		<script src="js/script.js"></script>
 		<!-- end scripts-->
 
 	</body>
