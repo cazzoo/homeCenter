@@ -23,10 +23,10 @@ $(function($) {
 });
 
 $(function($) {
-	$("select:#icon_select").change(function() {
-		$("select:#icon_select option:selected").each(function() {
-			$("#preview-icon-mini").attr("src", "img/icon/" + $(this).val());
-			$("#preview-icon-maxi").attr("src", "img/icon/bigIcon/" + $(this).val());
+	$("select:#page_icon").change(function() {
+		$("select:#page_icon option:selected").each(function() {
+			$("img:#preview-icon-mini").attr("src", "img/icon/" + $(this).val());
+			$("img:#preview-icon-maxi").attr("src", "img/icon/bigIcon/" + $(this).val());
 		})
 	}).change();
 	return false;
@@ -39,25 +39,26 @@ $(function($) {
 			url : "test.php",
 			type : "POST",
 			data : $(this).serialize(),
-			dataType : "html"
+			dataType : "html",
 		});
 
 		//cancel the submit button default behaviours
 		return false;
 	});
 
-	$("#form_add_page").ajaxStart(function() {
+	/*$("#form_add_page").ajaxStart(function() {
 		$('#collapsable_add_page').animate({
 			opacity : 0.25,
 			left : '+=50',
 			height : '128px'
 		}, 800, function() {
+			alert("111111");
 			$('#collapsable_add_page').html('<span class="loading">&nbsp;</span>').fadeIn("slow");
 		});
-	});
+	});*/
 
-	$("#form_add_page").ajaxComplete(function(msg) {
-		$("#collapsable_add_page").html(msg);
+	$("#form_add_page").ajaxSuccess(function(event, request, settings) {
+		$('#collapsable_add_page').html("Request Complete.");
 	});
 
 	$("#form_add_page").ajaxError(function(jqXHR, textStatus) {
