@@ -11,7 +11,7 @@ $(function($) {
 	var options = {
 		format : '%A %d %B %Y - %H:%M:%S',
 		utcOffset : 2,
-		utc : true,
+		utc : true
 	}
 	$('#jclock').jclock(options);
 });

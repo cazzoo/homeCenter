@@ -34,10 +34,6 @@
 
 		$action -> activate();
 		$action -> deactivate();
-
-		$db = new Database();
-		//$db -> saveToBase($action);
-		//$db -> loadFromBase();
 		?>
 		<!--[if lt IE 7]><div class="alert alert-warn"><a class="close" data-dismiss="alert" href="#">×</a><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p></div><![endif]-->
 
@@ -164,7 +160,7 @@
 				</div>
 				<div class="tab-pane" id="admin_actions">
 					<?php
-					$result = $db -> loadFromBase('action');
+					//$result = $db -> loadFromBase('action');
 					if (count($result) > 0) {
 						echo '
 						<table class="table table-striped">

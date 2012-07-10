@@ -14,6 +14,8 @@ class Database {
 
 	private function disconnect() {
 		$this -> _db -> close();
+		if (DEBUG_LEVEL > 0)
+			echo 'Disconnected from database ' . DB_NAME . "<br />";
 	}
 
 	/**
@@ -60,6 +62,7 @@ class Database {
 		$result = null;
 		switch($type) {
 			case "action" :
+			case "actions" :
 				//Get all the Actions
 				$result = $this -> _db -> query('SELECT * FROM actions');
 				$actions = array();
@@ -75,6 +78,7 @@ class Database {
 					echo var_dump($result);
 				break;
 			case "page" :
+			case "pages" :
 				//Get all the Pages
 				$result = $this -> _db -> query('SELECT * FROM pages');
 				$pages = array();
@@ -95,6 +99,7 @@ class Database {
 
 		if (DEBUG_LEVEL > 1)
 			echo 'Loading elements from database <br />';
+
 		return $result;
 	}
 
