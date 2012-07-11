@@ -71,6 +71,7 @@
 									<th>Icon</th>
 									<th>Link</th>
 									<th>Actions</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>';
@@ -82,6 +83,7 @@
 									<td>' . $value -> _content . '</td>
 									<td>' . $value -> _icon . '</td>
 									<td>' . $value -> _link . '</td>
+									<td>' . $value -> actionsToString() . '</td>
 									<td>
 										<a href="#" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i> Modify</a>
 										<a href="#" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i> Delete</a>
@@ -190,6 +192,31 @@
 					} else
 						echo '<div class="alert alert-info">No element found in the database for actions.</div>';
 					?>
+					<div class="well row" style="margin: 0 auto !important;">
+						<a id="collapse_add_action" class="close" href="#">&minus;</a>
+						<div id="collapsable_add_action">
+							<div class="span5">
+								<h4>Add an action</h4>
+								<hr />
+								<form id="form_add_action" name="form_add_action" method="post" action="test.php">
+								  <div class="input-prepend">
+								  	<span class="add-on prepend-mini">Name</span><input type="text" class="span3" name="action_name" placeholder="Enter action name…"> <span class="label label-important">* required</span>
+								  </div>
+								  <span class="help-block">Example block-level help text here.</span>
+								  <div class="input-prepend">
+								  	<span class="add-on prepend-mini">Description</span><textarea type="text" class="span3" name="action_description" placeholder="Enter action description…" rows="3" style="resize: vertical;"></textarea> <span class="label label-important">* required</span>
+								  </div>
+								  <span class="help-block">Example block-level help text here.</span>
+								  <button type="submit" class="btn">Submit</button>
+								</form>
+							</div>
+							<div class="span5">
+								<div id="action_preview">
+										<img id="preview-icon-mini" src=""/> &nbsp; <img id="preview-icon-maxi" src=""/>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 

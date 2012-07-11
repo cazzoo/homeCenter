@@ -5,6 +5,8 @@
 $(function($) {
 	//Elements init
 	$('.loading').fadeOut(0);
+	$("#collapsable_add_page").hide();
+	$("#collapsable_add_action").hide();
 });
 
 $(function($) {
@@ -19,6 +21,9 @@ $(function($) {
 $(function($) {
 	$("#collapse_add_page").click(function() {
 		$("#collapsable_add_page").toggle("fast");
+	});
+	$("#collapse_add_action").click(function() {
+		$("#collapsable_add_action").toggle("fast");
 	});
 });
 
@@ -43,26 +48,41 @@ $(function($) {
 		});
 
 		//cancel the submit button default behaviours
-		//return false;
+		return false;
 	});
 
-	/*$("#form_add_page").ajaxStart(function() {
+	$("#form_add_page").ajaxStart(function() {
 		$('#collapsable_add_page').animate({
 			opacity : 0.25,
 			left : '+=50',
 			height : '128px'
 		}, 800, function() {
-			alert("111111");
 			$('#collapsable_add_page').html('<span class="loading">&nbsp;</span>').fadeIn("slow");
 		});
-	});*/
+	});
 
-	/*$("#form_add_page").ajaxSuccess(function(event, request, settings) {
+	$("#form_add_page").ajaxSuccess(function(event, request, settings) {
 		$('#collapsable_add_page').html("Request Complete.");
 	});
 
 	$("#form_add_page").ajaxError(function(jqXHR, textStatus) {
 		alert("Request failed: " + textStatus);
-	});*/
+	});
+	
+	$("#form_add_action").submit(function() {
 
+		$.ajax({
+			url : "test.php",
+			type : "POST",
+			data : $(this).serialize(),
+			dataType : "html",
+		});
+
+		//cancel the submit button default behaviours
+		return false;
+	});	
+
+	$("#form_add_action").ajaxSuccess(function(event, request, settings) {
+		$('#collapsable_add_action').html("Request Complete.");
+	});
 });

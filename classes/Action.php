@@ -12,7 +12,7 @@ class Action extends SavableObject {
 	function __construct($name, $description) {
 		if (is_string($name) && is_string($description)) {
 			$this -> _id = $this -> getLastAvailableId();
-			$this -> _name = $name;
+			$this -> _name = trim(str_replace(" ", "", $name));
 			$this -> _description = $description;
 			$this -> updateState();
 		} else {
