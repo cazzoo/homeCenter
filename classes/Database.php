@@ -35,7 +35,7 @@ class Database {
 			//TODO : User Log action success
 			//The input is an Page Object
 		} else if ($object instanceof Page) {
-			$this -> _db -> exec("INSERT INTO pages (id, title, content) VALUES ('" . $object -> _id . "', '" . $object -> _title . "', '" . $object -> _content . "')");
+			$this -> _db -> exec("INSERT INTO pages (id, title, content, icon, link) VALUES ('" . $object -> _id . "', '" . $object -> _title . "', '" . $object -> _content . "', '" . $object -> _icon . "', '" . $object -> _link . "')");
 			if (DEBUG_LEVEL > 2)
 				echo "Insertion into pages<br />";
 			//TODO : User Log action success
@@ -66,11 +66,12 @@ class Database {
 				//Get all the Actions
 				$result = $this -> _db -> query('SELECT * FROM actions');
 				$actions = array();
+				
 				while ($res = $result -> fetchArray(SQLITE3_NUM)) {
 					if (!isset($res[0]))
 						continue;
 
-					$action = new Action($res[0], $res[1], $res[2]);
+					$action = new Action($res[1], $res[2]);
 					array_push($actions, $action);
 				}
 				$result = $actions;
@@ -82,16 +83,16 @@ class Database {
 				//Get all the Pages
 				$result = $this -> _db -> query('SELECT * FROM pages');
 				$pages = array();
-				while ($res = $result -> fetchArray(SQLITE3_NUM)) {
-					if (!isset($res[0]))
-						continue;
 
-					$page = new Page($res[0], $res[1], $res[2]);
+				while ($res = $result -> fetchArray(SQLITE3_ASSOC)) {
+					if (!isset($res['title']))
+						continue;
+					$page = new Page($res['title'], $res['content'], $res['icon'], $res['link']);
 					array_push($pages, $page);
 				}
 				$result = $pages;
 				if (DEBUG_LEVEL > 2)
-					echo var_dump($result);
+					var_dump($result);
 				break;
 		}
 
@@ -129,8 +130,8 @@ class Database {
 			$result = 0;
 
 		if (DEBUG_LEVEL > 1) {
-			echo 'Last id for ' . $type . ' is ' . ($result + 1) . ' <br />';
-			echo 'Next available id : ' . ($result + 1) . ' <br />';
+			echo 'Last id for ' . $type . ' is ' . ($result) . ' <br />';
+			echo 'Next available id for ' . $type . ' is ' . ($result + 1) . ' <br />';
 		}
 
 		return $result + 1;

@@ -16,8 +16,8 @@ class Page extends SavableObject {
 			$this -> _id = $this -> getLastAvailableId();
 			$this -> _title = $title;
 			$this -> _content = $content;
-			$this -> $_icon = $icon;
-			$this -> $_link = $link;
+			$this -> _icon = $icon;
+			$this -> _link = $link;
 		} else {
 			throw new Exception('Wrong input type');
 		}

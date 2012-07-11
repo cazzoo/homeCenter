@@ -11,5 +11,5 @@ define("DB_PATH",		"storage/");
 define("DB_NAME",		"homeCenter");
 
 //DEV
-define("DEBUG_LEVEL",	"1"); // Debug level from 0 to 3
+define("DEBUG_LEVEL",	"3"); // Debug level from 0 to 3
 ?>

@@ -3,9 +3,14 @@
 require ("loader.php");
 
 if (isset($_REQUEST['page_title']))
-	return 1;
-else
-	return 0;
+	echo 'form submitted';
 
-$p = new Page($_REQUEST['page_title'], $_REQUEST['page_content'], $_REQUEST['page_icon'], $_REQUEST['page_link']);
+$title = $_REQUEST['page_title'];
+$content = $_REQUEST['page_content'];
+$icon = $_REQUEST['page_icon'];
+$link = $_REQUEST['page_link'];
+
+$p = new Page($title, $content, $icon, $link);
+var_dump($p);
+$p -> save();
 ?>

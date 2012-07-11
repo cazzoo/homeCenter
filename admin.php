@@ -31,9 +31,6 @@
 		require("loader.php");
 
 		$action = new Action("myAction", "This is a first action that should create a file");
-
-		$action -> activate();
-		$action -> deactivate();
 		
 		$db = new Database();
 		?>
@@ -81,7 +78,7 @@
 							echo '
 								<tr>
 									<td>' . $value -> _id . '</td>
-									<td>' . $value -> _name . '</td>
+									<td>' . $value -> _title . '</td>
 									<td>' . $value -> _content . '</td>
 									<td>' . $value -> _icon . '</td>
 									<td>' . $value -> _link . '</td>
@@ -126,7 +123,7 @@
 										sort($imgArray);
 										$c = count($imgArray);
 										for ($i = 0; $i < $c; $i++) {
-											echo "<option value=\"" . $imgArray[$i] . "\">" . $imgArray[$i] . "\n";
+											echo "<option value=\"" . $imgArray[$i] . "\">" . $imgArray[$i] . "</option>\n";
 										}
 									?>
 								  </select>
@@ -162,7 +159,7 @@
 				</div>
 				<div class="tab-pane" id="admin_actions">
 					<?php
-					//$result = $db -> loadFromBase('action');
+					$result = $db -> loadFromBase('action');
 					if (count($result) > 0) {
 						echo '
 						<table class="table table-striped">

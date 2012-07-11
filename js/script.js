@@ -43,7 +43,7 @@ $(function($) {
 		});
 
 		//cancel the submit button default behaviours
-		return false;
+		//return false;
 	});
 
 	/*$("#form_add_page").ajaxStart(function() {
@@ -57,12 +57,12 @@ $(function($) {
 		});
 	});*/
 
-	$("#form_add_page").ajaxSuccess(function(event, request, settings) {
+	/*$("#form_add_page").ajaxSuccess(function(event, request, settings) {
 		$('#collapsable_add_page').html("Request Complete.");
 	});
 
 	$("#form_add_page").ajaxError(function(jqXHR, textStatus) {
 		alert("Request failed: " + textStatus);
-	});
+	});*/
 
 });
