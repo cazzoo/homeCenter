@@ -178,11 +178,11 @@
 							echo '
 								<tr>
 									<td>' . $value -> _id . '</td>
-									<td>' . $value -> _name . '</td>
-									<td>' . $value -> _description . '</td>
+									<td class="editable">' . $value -> _name . '</span></td>
+									<td class="editable">' . $value -> _description . '</span></td>
 									<td>
-										<a href="#" class="btn btn-primary btn-mini"><i class="icon-edit icon-white"></i> Modify</a>
-										<a href="#" class="btn btn-danger btn-mini"><i class="icon-remove icon-white"></i> Delete</a>
+										<button class="btn btn-primary btn-mini modify"><i class="icon-edit icon-white"></i> Modify</button>
+										<button class="btn btn-danger btn-mini delete"><i class="icon-remove icon-white"></i> Delete</button>
 									</td>
 								</tr>';
 						}

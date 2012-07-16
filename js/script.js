@@ -68,7 +68,7 @@ $(function($) {
 	$("#form_add_page").ajaxError(function(jqXHR, textStatus) {
 		alert("Request failed: " + textStatus);
 	});
-	
+
 	$("#form_add_action").submit(function() {
 
 		$.ajax({
@@ -80,9 +80,52 @@ $(function($) {
 
 		//cancel the submit button default behaviours
 		return false;
-	});	
+	});
 
 	$("#form_add_action").ajaxSuccess(function(event, request, settings) {
 		$('#collapsable_add_action').html("Request Complete.");
 	});
+
+	var btnValidCancel = '<button class="btn btn-success btn-mini modify"><i class="icon-edit icon-white"></i> OK</button> ';
+	btnValidCancel += '<button class="btn btn-warning btn-mini modify"><i class="icon-edit icon-white"></i> Cancel</button>';
+
+	//SUPPRESS
+	$(".btn.modify").click(function() {
+
+		$(this).parents("tr").children("td.editable").each(function() {
+			if(!$(this).children().is('input'))
+				$(this).html('<input type="text" value="' + $(this).html() + '" />');
+		});
+		$(this).replaceWith(btnValidCancel);
+		/*$.ajax({
+		url : "test.php",
+		type : "POST",
+		data : $(this).serialize(),
+		dataType : "html",
+		});*/
+
+		//cancel the submit button default behaviours
+		//return false;
+	});
+
+	$(".btn.delete").click(function() {
+		var rowToDelete = $(this).parents("tr");
+		var rowToDelete_ID = rowToDelete.children("td:first").html();
+		var request = $.ajax({
+			url : "test.php",
+			type : "POST",
+			data : {
+				id : rowToDelete_ID,
+				formAction : "Delete"
+			},
+			dataType : "html",
+		});
+
+		request.done(function(msg) {
+			rowToDelete.remove();
+		});
+
+		//cancel the submit button default behaviours
+		//return false;
+	})
 });

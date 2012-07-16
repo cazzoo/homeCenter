@@ -71,7 +71,7 @@ class Database {
                     if (!isset($res[0]))
                         continue;
 
-                    $action = new Action($res[1], $res[2]);
+                    $action = new Action($res[1], $res[2], $res[0]);
                     array_push($actions, $action);
                 }
                 $result = $actions;
@@ -87,7 +87,7 @@ class Database {
                 while ($res = $result -> fetchArray(SQLITE3_ASSOC)) {
                     if (!isset($res['title']))
                         continue;
-                    $page = new Page($res['title'], $res['content'], $res['icon'], $res['link']);
+                    $page = new Page($res['title'], $res['content'], $res['icon'], $res['link'], $res['id']);
                     array_push($pages, $page);
                 }
                 $result = $pages;
@@ -102,6 +102,24 @@ class Database {
             echo 'Loading elements from database <br />';
 
         return $result;
+    }
+
+    public function removeObject($type, $id) {
+
+        $this -> connect();
+
+        $type = strtolower($type);
+        $result = null;
+        switch($type) {
+            case "action" :
+                $this -> _db -> exec('DELETE FROM actions WHERE id = ' . $id . ')');
+                break;
+            case "page" :
+                $this -> _db -> exec('DELETE FROM pages WHERE id = ' . $id . ')');
+                break;
+        }
+
+        $this -> disconnect();
     }
 
     /**

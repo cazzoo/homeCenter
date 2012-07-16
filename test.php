@@ -17,4 +17,10 @@ if (isset($_REQUEST['action_name'])) {
     $a -> save();
 }
 
+if (isset($_REQUEST['formAction'])) {
+    if ($_REQUEST['formAction'] == "Delete")
+        echo 'Asking to delete : ' . $_REQUEST['id'];
+    $d = new Database();
+    $d -> removeObject('action', $_REQUEST['id']);
+}
 ?>

@@ -11,9 +11,12 @@ class Page extends SavableObject {
     private $_actions = array();
 
     // Methods
-    function __construct($title, $content, $icon, $link) {
+    function __construct($title, $content, $icon, $link, $id = -1) {
         if (is_string($title) && is_string($content) && is_string($icon) && is_string($link)) {
-            $this -> _id = $this -> getLastAvailableId();
+            if ($id == -1)
+                $this -> _id = $this -> getLastAvailableId();
+            else
+                $this -> _id = $id;
             $this -> _title = $title;
             $this -> _content = $content;
             $this -> _icon = $icon;
